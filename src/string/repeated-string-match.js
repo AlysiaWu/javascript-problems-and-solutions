@@ -19,12 +19,22 @@
  * @return {number}
  */
 const repeatedStringMatch = (A, B) => {
+  const lenA = A.length;
+  const lenB = B.length;
+
+  for (let i = 0; i < lenA; i++) {
+    let j = 0;
+
+    while (j < lenB && B[j] === A[(i + j) % lenA]) {
+      j++; // Scan through A and B for matching characters
+    }
+
+    if (j === lenB) {
+      return Math.ceil((i + j) / lenA);
+    }
+  }
+
   return -1;
 };
 
 export default repeatedStringMatch;
-
-const a = 'abcd';
-const b = 'cdabcdab';
-
-console.log(repeatedStringMatch(a, b));
